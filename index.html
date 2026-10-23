@@ -4,8 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>abhinesh</title>
+    <style>
+        :root {
+            --bg: #0e1a2b;
+            --bg-glow: #1e3550;
+            --ring: rgba(255, 255, 255, 0.12);
+            --tile: rgba(255, 255, 255, 0.08);
+            --tile-border: rgba(255, 255, 255, 0.18);
+            --text: #f1f4f8;
+            --muted: #9fb0c4;
+            --size: min(92vw, 560px);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            padding: 32px 16px;
+            background: radial-gradient(circle at 50% 40%, var(--bg-glow), var(--bg) 70%);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .orbit {
+            position: relative;
+            width: var(--size);
+            height: var(--size);
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px dashed var(--ring);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .ring.inner { width: 66%; height: 66%; }
+        .ring.outer { width: 96%; height: 96%; }
+
+        .avatar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 44%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            border: 3px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.06), 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: clamp(40px, 11%, 60px);
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--tile);
+            border: 1px solid var(--tile-border);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+            transition: scale 0.2s ease;
+        }
+        .logo:hover { scale: 1.15; }
+
+        /* Monochrome SVGs tinted with the brand colour via mask */
+        .logo span {
+            width: 55%;
+            height: 55%;
+            background-color: var(--color);
+            -webkit-mask: var(--icon) center / contain no-repeat;
+            mask: var(--icon) center / contain no-repeat;
+        }
+
+        .intro { text-align: center; }
+        .intro h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); letter-spacing: 0.02em; }
+        .intro p { color: var(--muted); margin-top: 6px; }
+    </style>
 </head>
 <body>
-    
+    <div class="orbit" id="orbit">
+        <div class="ring outer"></div>
+        <div class="ring inner"></div>
+        <img class="avatar" src="images/profile.jpg" alt="Portrait of Abhinesh">
+    </div>
+
+    <div class="intro">
+        <h1>Abhinesh</h1>
+        <p>Web developer &middot; learning and building</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
